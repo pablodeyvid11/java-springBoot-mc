@@ -1,6 +1,8 @@
 package com.pablodeyvid.demo.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +19,10 @@ public class CategoriaService {
 	public CategoriaDTO findById(Integer id) {
 		Optional<Categoria> opional = repo.findById(id);
 		return new CategoriaDTO(opional.orElse(null));
+	}
+
+	public List<CategoriaDTO> getAll() {
+		List<Categoria> lista = repo.findAll();
+		return lista.stream().map((categoria) -> new CategoriaDTO(categoria)).collect(Collectors.toList());
 	}
 }

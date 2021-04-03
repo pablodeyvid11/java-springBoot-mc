@@ -1,4 +1,4 @@
-package com.pablodeyvid.demo.resources;
+package com.pablodeyvid.demo.controllers;
 
 import java.util.List;
 
@@ -14,11 +14,16 @@ import com.pablodeyvid.demo.services.CategoriaService;
 
 @RestController
 @RequestMapping(value = "categorias")
-public class CategoriaResource {
-
+public class CategoriaController {
 	@Autowired
 	private CategoriaService service;
-
+	
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> getAll(){
+		List<CategoriaDTO> lista = service.getAll();
+		return ResponseEntity.ok().body(lista);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoriaDTO> findById(@PathVariable Integer id) {
 		CategoriaDTO cat = service.findById(id);

@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 
 import com.pablodeyvid.demo.domain.Categoria;
 
-@Entity
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
