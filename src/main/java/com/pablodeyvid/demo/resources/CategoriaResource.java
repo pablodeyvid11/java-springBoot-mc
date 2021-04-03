@@ -21,8 +21,6 @@ public class CategoriaResource {
 		List<Categoria> categorias = new ArrayList<>();
 		categorias.add(c1);
 		categorias.add(c2);
-		
-		
 		return categorias;
 	}
 }
