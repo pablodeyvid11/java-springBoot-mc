@@ -1,10 +1,11 @@
 package com.pablodeyvid.demo.domain.DTO;
 
 import java.io.Serializable;
-
-import javax.persistence.Entity;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pablodeyvid.demo.domain.Categoria;
+import com.pablodeyvid.demo.domain.Produto;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -12,6 +13,8 @@ public class CategoriaDTO implements Serializable {
 	private Integer id;
 	private String nome;
 
+	private List<Produto> produtos = new ArrayList<>();
+	
 	public CategoriaDTO() {
 	}
 
@@ -24,6 +27,7 @@ public class CategoriaDTO implements Serializable {
 		if (c != null) {
 			this.id = c.getId();
 			this.nome = c.getNome();
+			getProdutos().addAll(c.getProdutos());
 		}
 	}
 
@@ -41,6 +45,14 @@ public class CategoriaDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
