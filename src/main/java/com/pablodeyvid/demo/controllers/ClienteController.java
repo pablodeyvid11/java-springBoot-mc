@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pablodeyvid.demo.domain.Categoria;
-import com.pablodeyvid.demo.services.CategoriaService;
+import com.pablodeyvid.demo.domain.Cliente;
+import com.pablodeyvid.demo.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "categorias")
-public class CategoriaController {
+@RequestMapping(value = "clientes")
+public class ClienteController {
 	@Autowired
-	private CategoriaService service;
+	private ClienteService service;
 
 	@GetMapping
 	public ResponseEntity<?> getAll() {
-		List<Categoria> lista = service.getAll();
+		List<Cliente> lista = service.getAll();
 		return ResponseEntity.ok().body(lista);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		Categoria cat = service.findById(id);
-		return ResponseEntity.ok().body(cat);
+		Cliente cli = service.findById(id);
+		return ResponseEntity.ok().body(cli);
 	}
 }
