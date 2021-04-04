@@ -17,13 +17,13 @@ import com.pablodeyvid.demo.services.CategoriaService;
 public class CategoriaController {
 	@Autowired
 	private CategoriaService service;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Categoria>> getAll(){
+	public ResponseEntity<?> getAll() {
 		List<Categoria> lista = service.getAll();
 		return ResponseEntity.ok().body(lista);
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
 		Categoria cat = service.findById(id);
