@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pablodeyvid.demo.domain.Cliente;
-import com.pablodeyvid.demo.domain.ItemPedido;
-import com.pablodeyvid.demo.domain.Pedido;
 import com.pablodeyvid.demo.repositories.ClienteRepository;
 import com.pablodeyvid.demo.services.exceptions.ObjectNotFoundException;
 
@@ -27,16 +25,8 @@ public class ClienteService {
 		if (opional.orElse(null) != null) {
 			Hibernate.initialize(opional.orElse(null).getEnderecos());
 			Hibernate.initialize(opional.orElse(null).getTelefones());
-			Hibernate.initialize(opional.orElse(null).getPedidos());
-			for(Pedido p : opional.orElse(null).getPedidos()) {
-				Hibernate.initialize(p.getItens());
-				for(ItemPedido ip : p.getItens()) {
-					Hibernate.initialize(ip.getId());
-				}
-			}
 		}
 
-		
 		return opional.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
@@ -47,7 +37,6 @@ public class ClienteService {
 		for (Cliente c : lista) {
 			Hibernate.initialize(c.getEnderecos());
 			Hibernate.initialize(c.getTelefones());
-			Hibernate.initialize(c.getPedidos());
 		}
 		return lista;
 	}
